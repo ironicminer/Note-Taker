@@ -38,6 +38,7 @@ app.post("/api/notes", (request, response) => {
     let noteData = JSON.parse(data);
 
     noteData.push(request.body);
+    console.log(noteData);
     for (let i = 0; i < noteData.length; i++) {
       noteData[i].id = i + 1;
     }
