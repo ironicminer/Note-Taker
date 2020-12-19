@@ -27,24 +27,26 @@ app.get("*", function (request, response) {
 });
 //API routes
 app.get("/api/notes", function (request, response) {
-  fs.readFile("/db/db.json", (err, note));
+  request.fs.readFile("/db/db.json", (err, data));
   return response.json(notes);
 });
 
 app.post("/api/notes", function (request, response) {
-  fs.readFile("/db/db.json", (err, note));
-  let note = request.body;
-  note.id = id;
-  id++;
-  note.push(note);
+  fs.readFile("/db/db.json", (err, data));
+  let noteData = JSON.parse(data);
+  noteData.push(request.body);
+  for (let i = 0; i < noteData.length; i++) {
+    noteData[i].id = i++;
+  }
+
   fs.writeFile(
     path.join(__dirname, "/db/db.json"),
-    JSON.stringify(note),
+    JSON.stringify(noteData),
     function (err) {
       if (err) console.log(err);
+      response.send("/db/db.json");
     }
   );
-  response.json(true);
 });
 
 //Start server
