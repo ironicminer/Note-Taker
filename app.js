@@ -2,7 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const util = require("util");
 const path = require("path");
-const db = require("/db.json");
+const db = require("db/db.json");
 
 const readFile = util.promisify(fs.readFile);
 
