@@ -25,10 +25,8 @@ app.get("/notes", function (request, response) {
 
 //API routes
 app.get("/api/notes", function (request, response) {
-  fs.readFile("./db/db.json", (err, data) => {
-    if (err) throw err;
-    response.json(JSON.parse(notes));
-  });
+  fs.readFile("./db/db.json", (err, data));
+  return response.json(notes);
 });
 
 app.get("*", function (request, response) {
