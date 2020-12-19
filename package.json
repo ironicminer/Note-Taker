@@ -10,5 +10,14 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ironicminer/Note-Taker.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/ironicminer/Note-Taker/issues"
+  },
+  "homepage": "https://github.com/ironicminer/Note-Taker#readme"
 }
