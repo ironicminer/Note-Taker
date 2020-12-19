@@ -35,11 +35,11 @@ app.get("/api/notes", function (request, response) {
 app.post("/api/notes", (request, response) => {
   fs.readFile("./db/db.json", (err, data) => {
     if (err) throw err;
-    let noteData = data;
-    JSON.parse(data);
+    let noteData = JSON.parse(data);
+
     noteData.push(request.body);
     for (let i = 0; i < noteData.length; i++) {
-      noteData[i].id = i++;
+      noteData[i].id = i + 1;
     }
 
     fs.writeFile("./db/db.json"),
