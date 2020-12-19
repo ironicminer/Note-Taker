@@ -36,10 +36,10 @@ app.post("/api/notes", function (request, response) {
   let note = request.body;
   note.id = id;
   id++;
-  notes.push(note);
+  note.push(data);
   fs.writeFile(
     path.join(__dirname, "/db/db.json"),
-    JSON.stringify(notes),
+    JSON.stringify(note),
     function (err) {
       if (err) console.log(err);
     }
