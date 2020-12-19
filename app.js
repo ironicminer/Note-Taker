@@ -33,7 +33,7 @@ app.get("/api/notes", function (request, response) {
 });
 
 app.post("/api/notes", (request, response) => {
-  fs.readFile("/db/db.json", (err, data) => {
+  fs.readFile("./db/db.json", (err, data) => {
     if (err) throw err;
   });
   let noteData = JSON.parse(data);
