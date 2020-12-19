@@ -34,9 +34,9 @@ app.get("/api/notes", function (request, response) {
 
 app.post("/api/notes", (request, response) => {
   fs.readFile("./db/db.json", (err, data) => {
+      let noteData = data;
     if (err) throw err;
-  });
-  let noteData = JSON.parse(data);
+  
   noteData.push(request.body);
   for (let i = 0; i < noteData.length; i++) {
     noteData[i].id = i++;
@@ -48,6 +48,7 @@ app.post("/api/notes", (request, response) => {
       if (err) throw err;
       response.send(db);
     };
+
 });
 
 //Start server
