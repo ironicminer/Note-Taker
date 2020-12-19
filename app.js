@@ -15,6 +15,7 @@ initialize();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "/public")));
 
 //html routes
 app.get("/notes", function (request, response) {
@@ -26,6 +27,7 @@ app.get("*", function (request, response) {
 });
 //API routes
 app.get("/api/notes", function (request, response) {
+  fs.readFile("/db/db.json", (err, note));
   return response.json(notes);
 });
 
