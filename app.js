@@ -2,7 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const util = require("util");
 const path = require("path");
-const db = require("db/db.json");
+let db = require("./db/db.json");
 
 const readFile = util.promisify(fs.readFile);
 
@@ -16,7 +16,7 @@ initialize();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static(path.join(__dirname, "./public")));
 
 //html routes
 app.get("/notes", function (request, response) {
