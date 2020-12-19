@@ -53,6 +53,26 @@ app.post("/api/notes", (request, response) => {
   });
 });
 
+app.delete("/api/notes/:id", (request, response) => {
+  fs.readFile("./db/db.json", (err, data) => {
+    if (err) throw err;
+    //console.log(request.params.id);
+    let notes = JSON.parse(data);
+    let filterNotes = notes.filter(function (note) {
+      console.log(
+        request.params.id,
+        note.id,
+        note.id === parseInt(request.params.id, 10)
+      );
+      return note.id !== parseInt(request.params.id, 10);
+    });
+    console.log(filterNotes);
+    fs.writeFile("./db/db.json", JSON.stringify(filterNotes), (err, data) => {
+      if (err) throw err;
+      response.send(JSON.stringify(filterNotes));
+    });
+  });
+});
 //Start server
 app.listen(PORT, function () {
   console.log("Server started on port: " + PORT);
