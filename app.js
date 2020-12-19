@@ -2,6 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const util = require("util");
 const path = require("path");
+const db = require("/db/db.json");
 
 const readFile = util.promisify(fs.readFile);
 
@@ -31,22 +32,22 @@ app.get("/api/notes", function (request, response) {
   return response.json(notes);
 });
 
-app.post("/api/notes", function (request, response) {
-  fs.readFile("/db/db.json", (err, data));
+app.post("/api/notes", (request, response) => {
+  fs.readFile("/db/db.json", (err, data) => {
+    if (err) throw err;
+  });
   let noteData = JSON.parse(data);
   noteData.push(request.body);
   for (let i = 0; i < noteData.length; i++) {
     noteData[i].id = i++;
   }
 
-  fs.writeFile(
-    path.join(__dirname, "/db/db.json"),
+  fs.writeFile(db),
     JSON.stringify(noteData),
-    function (err) {
-      if (err) console.log(err);
-      response.send("/db/db.json");
-    }
-  );
+    (err) => {
+      if (err) throw err;
+      response.send(db);
+    };
 });
 
 //Start server
