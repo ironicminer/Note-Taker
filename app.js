@@ -19,7 +19,6 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 //html routes
 app.get("/notes", function (request, response) {
-  fs.readFile("/db/db.json", (err, note));
   response.sendFile(path.join(__dirname, "/public/notes.html"));
 });
 
@@ -33,6 +32,7 @@ app.get("/api/notes", function (request, response) {
 });
 
 app.post("/api/notes", function (request, response) {
+  fs.readFile("/db/db.json", (err, data));
   let note = request.body;
   note.id = id;
   id++;
