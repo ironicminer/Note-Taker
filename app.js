@@ -49,29 +49,29 @@ app.post("/api/notes", (request, response) => {
         response.send(db);
       };
   });
-
-  //Start server
-  app.listen(PORT, function () {
-    console.log("Server started on port: " + PORT);
-  });
-
-  async function initialize() {
-    await readNotes();
-    setId();
-  }
-
-  async function readNotes() {
-    note = JSON.parse(await readFile(path.join(__dirname, "/db/db.json")));
-  }
-
-  function setId() {
-    let highID = 0;
-    if (note.length > 0) {
-      note.forEach(function (note) {
-        if (note.id > highID) highID = note.id;
-      });
-    }
-    highID++;
-    id = highID;
-  }
 });
+
+//Start server
+app.listen(PORT, function () {
+  console.log("Server started on port: " + PORT);
+});
+
+async function initialize() {
+  await readNotes();
+  setId();
+}
+
+async function readNotes() {
+  note = JSON.parse(await readFile(path.join(__dirname, "/db/db.json")));
+}
+
+function setId() {
+  let highID = 0;
+  if (note.length > 0) {
+    note.forEach(function (note) {
+      if (note.id > highID) highID = note.id;
+    });
+  }
+  highID++;
+  id = highID;
+}
