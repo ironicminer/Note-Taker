@@ -23,22 +23,22 @@ app.get("/notes", function (request, response) {
   response.sendFile(path.join(__dirname, "/public/notes.html"));
 });
 
-app.get("*", function (request, response) {
-  response.sendFile(path.join(__dirname, "/public/index.html"));
-});
 //API routes
 app.get("/api/notes", function (request, response) {
-  request.fs.readFile("/db/db.json", (err, data));
+  request.fs.readFile("./db/db.json", (err, data));
   return response.json(notes);
 });
 
+app.get("*", function (request, response) {
+  response.sendFile(path.join(__dirname, "/public/index.html"));
+});
 app.post("/api/notes", (request, response) => {
   fs.readFile("./db/db.json", (err, data) => {
     if (err) throw err;
     let noteData = JSON.parse(data);
 
-    noteData.push(request.body);
     console.log(noteData);
+    noteData.push(request.body);
     for (let i = 0; i < noteData.length; i++) {
       noteData[i].id = i + 1;
     }
