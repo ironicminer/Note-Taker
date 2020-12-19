@@ -42,12 +42,10 @@ app.post("/api/notes", (request, response) => {
       noteData[i].id = i + 1;
     }
 
-    fs.writeFile("./db/db.json"),
-      JSON.stringify(noteData),
-      (err) => {
-        if (err) throw err;
-        response.send(db);
-      };
+    fs.writeFile("./db/db.json", JSON.stringify(noteData), (err) => {
+      if (err) throw err;
+      response.send(db);
+    });
   });
 });
 
