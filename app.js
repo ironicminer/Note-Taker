@@ -17,8 +17,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //html routes
-app.get("./notes", function (request, response) {
-  response.sendFile(path.join(__dirname, "/public/notes.html"));
+app.get("/notes", function (request, response) {
+  response.sendFile(path.join(__dirname, "../public/notes.html"));
+});
+
+app.get("*", function (request, response) {
+  response.sendFile(path.join(__dirname, "/public/index.html"));
 });
 //API routes
 app.get("/api/notes", function (request, response) {
