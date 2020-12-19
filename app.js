@@ -32,11 +32,11 @@ app.get("/api/notes", function (request, response) {
 });
 
 app.post("/api/notes", function (request, response) {
-  fs.readFile("/db/db.json", (err, data));
+  fs.readFile("/db/db.json", (err, note));
   let note = request.body;
   note.id = id;
   id++;
-  note.push(data);
+  note.push(note);
   fs.writeFile(
     path.join(__dirname, "/db/db.json"),
     JSON.stringify(note),
