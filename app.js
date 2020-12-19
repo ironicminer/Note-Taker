@@ -22,16 +22,19 @@ app.use(express.static(path.join(__dirname, "./public")));
 app.get("/notes", function (request, response) {
   response.sendFile(path.join(__dirname, "/public/notes.html"));
 });
+app.get("/", function (request, response) {
+  response.sendFile(path.join(__dirname, "/public/index.html"));
+});
 
 //API routes
 app.get("/api/notes", function (request, response) {
-  fs.readFile("./db/db.json", (err, data));
-  return response.json(notes);
+  fs.readFile("./db/db.json", function (err, data) {
+    if (err) throw err;
+    console.log(JSON.parse(data));
+    response.send(JSON.parse(data));
+  });
 });
 
-app.get("*", function (request, response) {
-  response.sendFile(path.join(__dirname, "/public/index.html"));
-});
 app.post("/api/notes", (request, response) => {
   fs.readFile("./db/db.json", (err, data) => {
     if (err) throw err;
