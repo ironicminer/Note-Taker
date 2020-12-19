@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 //html routes
 app.get("/notes", function (request, response) {
+  fs.readFile("/db/db.json", (err, note));
   response.sendFile(path.join(__dirname, "/public/notes.html"));
 });
 
