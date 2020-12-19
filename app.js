@@ -66,7 +66,7 @@ async function readNotes() {
 function setId() {
   let highID = 0;
   if (note.length > 0) {
-    note.forEach(function (note) {
+    note.map(function (note) {
       if (note.id > highID) highID = note.id;
     });
   }
