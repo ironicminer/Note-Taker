@@ -21,3 +21,14 @@ app.get("/notes", function (request, response) {
   response.sendFile(path.join(__dirname, "/public/notes.html"));
 });
 //API routes
+app.get("/api/notes", function (request, response) {
+  return response.json(notes);
+});
+
+app.post("");
+
+//Start server
+app.listen(PORT, function () {
+  console.log("Server started on port: " + PORT);
+});
+//Stop Server
