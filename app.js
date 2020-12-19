@@ -11,7 +11,7 @@ let PORT = process.env.PORT || 3000;
 
 let note = [];
 let id = 0;
-initialize();
+//initialize();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -25,7 +25,20 @@ app.get("/api/notes", function (request, response) {
   return response.json(notes);
 });
 
-app.post("");
+app.post("/api/notes", function (request, response) {
+  let note = request.body;
+  note.id = id;
+  id++;
+  notes.push(note);
+  fs.writeFile(
+    path.join(__dirname, "/db/db.json"),
+    JSON.stringify(notes),
+    function (err) {
+      if (err) console.log(err);
+    }
+  );
+  response.json(true);
+});
 
 //Start server
 app.listen(PORT, function () {
